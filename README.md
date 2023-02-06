@@ -24,17 +24,17 @@ Install curl on your system using:
 
 Download the pubkey.gpg file using:
 
-```wget -nc https://dl.yarnpkg.com/debian/pubkey.gpg```
+```wget -nc https://dl.yarnpkg.com/debian/pubkey.gpg
 
-```cat pubkey.gpg| gpg --dearmor | sudo tee /usr/share/keyrings/pubkey.gpg > /dev/null 2>&1```
+```cat pubkey.gpg| gpg --dearmor | sudo tee /usr/share/keyrings/pubkey.gpg > /dev/null 2>&1
 
-```echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list```
+```echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-```sudo apt-get update```
+```sudo apt-get update
 
-```sudo apt-get install yarn -y```
+```sudo apt-get install yarn -y
 
-```yarn add --dev hardhat```
+```yarn add --dev hardhat
 
 ```yarn install```
 
