@@ -24,7 +24,7 @@ Install curl on your system using:
 
 Download the pubkey.gpg file using:
 
-```wget -nc https://dl.yarnpkg.com/debian/pubkey.gpg  cat pubkey.gpg| gpg --dearmor | sudo tee /usr/share/keyrings/pubkey.gpg > /dev/null 2>&1  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list  sudo apt-get update  sudo apt-get install yarn -y  yarn add --dev hardhat  yarn install```
+```wget -nc https://dl.yarnpkg.com/debian/pubkey.gpg  <br />cat pubkey.gpg| gpg --dearmor | sudo tee /usr/share/keyrings/pubkey.gpg > /dev/null 2>&1 <br /> echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list <br />  sudo apt-get update  <br /> sudo apt-get install yarn -y <br /> yarn add --dev hardhat <br /> yarn install```
 
 Run the Hardhat Network using:
 
