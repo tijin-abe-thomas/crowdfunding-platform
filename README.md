@@ -1,4 +1,4 @@
-# crowdfunding-platform
+# crowdfunding-platfor
 
 ## Initialising the project
 
