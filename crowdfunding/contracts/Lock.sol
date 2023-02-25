@@ -32,65 +32,159 @@ contract Lock {
         owner.transfer(address(this).balance);
     }
 }
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
 contract Crowdfunding {
-    uint public raisedamount;
-    uint public noOfContributors;
-    uint public Trustcoins;
-    uint public remainingTrustCoins;
+    uint public noOfCampaigns;
+    uint public totalRaisedAmount;
+    uint public totalTrustCoins=1000000;
+   
+    uint public deadline;
     uint onewei = 1 wei;
     address public manager;
-    mapping (address=>uint) public contributor;
-    struct Campaign {
-        string description;
-        address payable recipient;
-        uint goal;
-        uint pledged;
-        uint noofVoters;
-        uint endAt;
-        bool claimed;
-        uint mincontribution;
+    mapping(address=>uint) managerTrust;
+    
+    struct Contributor{
+        address contributor;
+        uint amtContributed;
     }
-    mapping (uint=>Campaign) public Campaigns; 
-    uint public noofCampaign;
 
+    struct Campaign {
+        uint ID;
+        string hash;
+        string title;
+        string description;
+        string location;
+        string category;
+        address payable recipient;
+        uint minContribution;
+        uint goal;
+        uint pledgedAmt;
+        uint campaignDeadline;
+        uint noOfContributors;
+        Contributor[] contributors;
+        bool claimed;
+    }
+
+    Campaign[] Campaigns;
+
+    event CampaignUploaded(
+        uint ID,
+        string title,
+        string description,
+        string location,
+        string category,
+        address payable recipient,
+        uint minContribution,
+        uint goal,
+        uint campaignDeadline,
+        bool claimed
+    );
+    
     constructor(){
         manager=msg.sender;
+        managerTrust[msg.sender]=500;
+        totalTrustCoins-=500;
     }
-    Campaign requests ;
 
-    function launch (string memory description_,address payable recipient_ ,uint target__ , uint deadline__ , uint mincontribution_) public{
+    function uploadCampaign(
+        string memory title_,
+        string memory description_,
+        string memory location_,
+        string memory category_,
+        address payable recipient_ ,
+        uint minContribution_,
+        uint goal_ , 
+        uint deadline_ 
+        ) public {
         require(msg.sender==manager,"Only manager can create this Campaign");
-        Campaign memory request = Campaigns[noofCampaign] ;
-        noofCampaign++;
-        request.goal=target__;
-        request.recipient=recipient_;
-        request.endAt=block.timestamp+deadline__;
-        request.mincontribution=mincontribution_*onewei;
-        request.description=description_;
-        request.claimed= false;
-        request.noofVoters=0;
-    }
-    function sendEth() public payable{
-        require (block.timestamp < requests.endAt, "Deadline has passed");
-        require (msg.value >= requests.mincontribution , "Minimum contribution has not met");
+        Campaign memory requests;
+        requests.ID=noOfCampaigns-1;
+        requests.title=title_;
+        requests.description=description_;
+        requests.location=location_;
+        requests.category=category_;
+        requests.recipient=recipient_;
+        requests.minContribution=minContribution_*onewei;
+        requests.goal=goal_;
+        requests.campaignDeadline=block.timestamp+ deadline_;
+        requests.claimed= false;
+        Campaigns.push(requests);
         
+        // Campaigns[noOfCampaigns] = Campaign(
+        //     noOfCampaigns-1,
+        //     "",
+        //     title_,
+        //     description_,
+        //     location_,
+        //     category_,
+        //     recipient_,
+        //     minContribution_*onewei,
+        //     goal_,
+        //     0,
+        //     block.timestamp+ deadline_,
+        //     0,
+        //     [],
+        //     false,
+        // );
 
-        if(contributor[msg.sender]==0){
-            noOfContributors++;            //if first time contributing, amt contributed=0
+        noOfCampaigns++;
+        emit CampaignUploaded(
+            noOfCampaigns-1,
+            title_,
+            description_,
+            location_,
+            category_,
+            recipient_ ,
+            minContribution_,
+            goal_ , 
+            deadline_,
+            false
+        );
+    }
+
+    function payCampaign(uint id_) public payable{
+        require (block.timestamp < Campaigns[id_].campaignDeadline, "Deadline has passed");
+        require (msg.value >= Campaigns[id_].minContribution , "Minimum contribution has not met");
+        
+        Contributor memory contributor;
+        contributor.contributor=msg.sender;
+        contributor.amtContributed=msg.value;
+
+        Campaigns[id_].noOfContributors++;
+        totalRaisedAmount=totalRaisedAmount+msg.value;
+        Campaigns[id_].pledgedAmt+=msg.value;
+
+        Campaigns[id_].contributors.push(contributor);
+    }
+
+    function balanceOfCampaign(uint id_) public view returns(uint){
+        return Campaigns[id_].pledgedAmt;
+    }
+
+    function campaignContributors(uint id_) public view returns(Contributor[] memory){
+        return Campaigns[id_].contributors;
+    }
+
+    function getAllCampaigns() public view returns (Campaign[] memory){
+        return Campaigns;
+    }
+
+    function refundAmt(uint id_) public {
+        require(block.timestamp>Campaigns[id_].campaignDeadline && Campaigns[id_].pledgedAmt<Campaigns[id_].goal, "You are not eligible to get refund right now");
+        uint i;
+        for (i = 0; i < Campaigns[id_].contributors.length; i++) {
+            address payable user = payable(Campaigns[id_].contributors[i].contributor);
+            user.transfer(Campaigns[id_].contributors[i].amtContributed);
+            Campaigns[id_].contributors[i].amtContributed = 0;
         }
-        raisedamount=raisedamount+msg.value;
-        contributor[msg.sender]+=msg.value; //second,third time their contribution updated 
+        // require(flag==1, "You are not eligible for refund :D");
+        
+        //     address payable user = payable(msg.sender);
+        //     user.transfer(Campaigns[id_].contributors[i].amtContributed);
+        //     Campaigns[id_].contributors[i].amtContributed = 0;
+    }
 
-    }
-    function balance() public view returns(uint){
-        return address(this).balance;//returns balance of the contract
-    }
-    function refund() public {
-        require(block.timestamp>requests.endAt && raisedamount<requests.goal,"You are not eligible to get refund right now");
-        require(contributor[msg.sender]>0,"You haven't contributed any amount");
-        address payable user = payable(msg.sender);
-        user.transfer(contributor[msg.sender]);
-        contributor[msg.sender]=0;
-    }
-  
 }
