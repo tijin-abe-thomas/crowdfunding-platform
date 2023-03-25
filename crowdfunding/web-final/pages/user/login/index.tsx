@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -27,6 +28,27 @@ import { useAccount, useConnect, useSignMessage, useDisconnect } from "wagmi";
 import { useRouter } from "next/router";
 import { useAuthRequestChallengeEvm } from "@moralisweb3/next";
 
+//Smart Contract
+import Web3 from 'web3';
+import User from "../../../build/contracts/User.json";
+import { redirect } from 'next/dist/server/api-utils';
+
+const web3 = new Web3("http://localhost:7545"); // initialize web3 with your Ethereum provider URL
+const contractAddress = "0xea0c3088cbcE8df61801E3F1DdC1Ae9f9Ed7348E"; // replace with the actual address of your deployed smart contract
+const contractAbi = User.abi; // import the ABI of your smart contract
+
+const profileContract = new web3.eth.Contract(contractAbi, contractAddress); 
+
+async function setName(id: string, name: string): Promise<void> {
+  const accounts = await web3.eth.getAccounts(); // get the current user's account
+  await profileContract.methods.setName(id, name).send({ from: accounts[0] }); // call the setName function and send the transaction
+}
+
+async function getName(id: string): Promise<string> {
+  const result = await profileContract.methods.getName(id).call(); // call the getName function and get the result
+  return result;
+}
+
 const MainContent = styled(Box)(
   () => `
     height: 100%;
@@ -55,6 +77,9 @@ const OutlinedInputWrapper = styled(OutlinedInput)(
 
 
 function SignIn() {
+
+  const [error, setError] = useState<string | null>(null);
+
 
   //Moralis Authentication
   const { connectAsync } = useConnect();
@@ -87,26 +112,37 @@ function SignIn() {
       redirect: false,
       callbackUrl: "/management/profile",
     });
+
+    const existingUser = await userGet(account);
+
+    if (existingUser === '') {
+        // Throw error if user does not exist
+        setError('Account does not exist! Please sign up to continue');
+    } else {
+        // set error if user already exists
+        const userRef = existingUser;
+        const encodedVariable = encodeURIComponent(userRef);
+        const urlSearchParams = new URLSearchParams();
+        urlSearchParams.set('userRef', encodedVariable);
+        const queryString = urlSearchParams.toString();
+        push(`${url}?${queryString}`);
+    }
+
+    
+    const userName = await userGet(account);
+    console.log(account)
+    console.log(userName)
     /**
      * instead of using signIn(..., redirect: "/user")
      * we get the url from callback and push it to the router to avoid page refreshing
      */
-    push(url);
   };
 
-  // const { address, isConnected } = useAccount()
-  // console.log(address);
-  // console.log(isConnected);
- 
-  //  const   router = useRouter();
-    
-  //   useEffect(() => {
-  //     if (isConnected == true){
-  //       setTimeout(()=>{
-  //         router.push('/management/profile');
-  //       }, 0)
-  //       console.log("Connected!");
-  //   }}, [isConnected]);
+  const userGet = async (account: string) => {
+    // code to interact with smart contract and set name and address
+    const userName = getName(account);
+    return userName
+  };
   
   return (
     <>
@@ -157,6 +193,9 @@ function SignIn() {
                     />
                   </div>
                 </Box> */}
+                <Typography color="error" variant="caption">
+                      {error}
+                </Typography>
                 <Button onClick={handleAuth} variant="contained">
                   Login with Metamask
                 </Button>  

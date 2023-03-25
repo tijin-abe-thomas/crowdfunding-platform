@@ -58,9 +58,15 @@ const UserBoxDescription = styled(Typography)(
 `
 );
 
+const queryString = window.location.search;
+const urlSearchParams = new URLSearchParams(queryString);
+const encodedVariable = urlSearchParams.get('userRef');
+const myVariable = decodeURIComponent(encodedVariable);
+console.log(myVariable);
+
 function HeaderUserbox() {
   const user = {
-    name: 'Catherine Pike',
+    name: myVariable,
     avatar: '/static/images/avatars/1.jpg',
     jobtitle: 'Project Manager'
   };

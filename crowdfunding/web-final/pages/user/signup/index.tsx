@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
     Box,
     Card,
@@ -49,7 +50,7 @@ import User from "../../../build/contracts/User.json";
 import { redirect } from 'next/dist/server/api-utils';
 
 const web3 = new Web3("http://localhost:7545"); // initialize web3 with your Ethereum provider URL
-const contractAddress = "0xc2E9D037aA566025d7830C1e38A6D47aBF3B5AD1"; // replace with the actual address of your deployed smart contract
+const contractAddress = "0xea0c3088cbcE8df61801E3F1DdC1Ae9f9Ed7348E"; // replace with the actual address of your deployed smart contract
 const contractAbi = User.abi; // import the ABI of your smart contract
 
 const profileContract = new web3.eth.Contract(contractAbi, contractAddress); 
@@ -106,6 +107,9 @@ async function getName(id: string): Promise<string> {
   function Status404() {
 
 
+  const [error, setError] = useState<string | null>(null);
+
+
     //Moralis Authentication
   const { connectAsync } = useConnect();
   const { disconnectAsync } = useDisconnect();
@@ -116,6 +120,9 @@ async function getName(id: string): Promise<string> {
 
   const handleAuth = async () => {
     console.log("Point handleAuth");
+
+    window.dispatchEvent(new CustomEvent('handleAuthStarted'));
+
     if (isConnected) {
       await disconnectAsync();
     }
@@ -132,40 +139,8 @@ async function getName(id: string): Promise<string> {
     const signature = await signMessageAsync({ message });
     // redirect user after success authentication to '/user' page
 
-    interface FormData {
-      name: string;
-    }
-
-    class Form {
-      private formData: FormData = { name: ''};
-    
-      constructor(
-        private formElement: HTMLFormElement,) {
-        this.formElement.addEventListener('submit', this.onSubmit.bind(this));
-      }
-    
-      private onSubmit(event: Event): void {
-        event.preventDefault();
-        console.log("Point onSubmit");       
-    
-        const formData = new FormData(this.formElement);
-        this.formData = {
-          name: formData.get('name-signup') as string,
-        };
-    
-        console.log(this.formData); // do something with the data
-      }
-
-      public getName(): string | null {
-        return this.formData.name;
-      }
-
-    }
-
-    const formElement = document.querySelector('#form-name') as HTMLFormElement;
-    const form = new Form(formElement);
-
-    const userName = form.getName()
+    const userNameInput = document.getElementById('name-signup') as HTMLInputElement
+    const userName = userNameInput.value;
 
     const { url } = await signIn("moralis-auth", {
         message,
@@ -174,14 +149,37 @@ async function getName(id: string): Promise<string> {
         callbackUrl: "/management/profile",
       });
 
-    console.log(setName(account, userName))
-    /**
-     * instead of using signIn(..., redirect: "/user")
-     * we get the url from callback and push it to the router to avoid page refreshing
-     */
-    push(url);
+      console.log(account)
+      console.log(userName)
+
+    const existingUser = await userGet(account);
+
+    if (existingUser === '') {
+        // add user if it does not exist
+        await userSet(account, userName);
+        const userRef = existingUser;
+        const encodedVariable = encodeURIComponent(userRef);
+        const urlSearchParams = new URLSearchParams();
+        urlSearchParams.set('userRef', encodedVariable);
+        const queryString = urlSearchParams.toString();
+        push(`${url}?${queryString}`);
+    } else {
+        // set error if user already exists
+        setError('Account already exists! Please login to continue');
+    }
   };
 
+  const userSet = async (name: string, account: string) => {
+    // code to interact with smart contract and set name and address
+    setName(name, account);
+  };
+  
+  const userGet = async (account: string) => {
+    // code to interact with smart contract and set name and address
+    const userName = getName(account);
+    console.log(userName)
+    return userName
+  };
 
   
     // const { address, isConnected } = useAccount()
@@ -197,6 +195,9 @@ async function getName(id: string): Promise<string> {
       //     }, 0)
       //     console.log("Connected!");
       // }}, [isConnected]);
+
+    //Error in case of already existing user
+
     
     return (
       <>
@@ -232,6 +233,9 @@ async function getName(id: string): Promise<string> {
                     autoComplete="off"
                   >
                     <div>
+                    <Typography color="error" variant="caption">
+                      {error}
+                    </Typography>
                       <TextField
                         required
                         id="name-signup"
@@ -241,7 +245,7 @@ async function getName(id: string): Promise<string> {
                       />
                     </div>
                     <div>
-                    <Button onClick={handleAuth} variant="contained" type="submit">
+                    <Button variant="contained" onClick={handleAuth}>
                       Sign Up with Metamask
                     </Button> 
                     </div>

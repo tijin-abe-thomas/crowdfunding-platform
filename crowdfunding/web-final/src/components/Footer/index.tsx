@@ -18,7 +18,7 @@ function Footer() {
       >
         <Box>
           <Typography variant="subtitle1">
-            &copy; 2022 - Tokyo Free White Next.js Typescript Admin Dashboard
+            &copy; 2023 - IE NITK Decentralised Crowdfunding Platform.
           </Typography>
         </Box>
         <Typography
@@ -29,11 +29,11 @@ function Footer() {
         >
           Crafted by{' '}
           <Link
-            href="https://bloomui.com"
+            href="http://ie.nitk.ac.in"
             target="_blank"
             rel="noopener noreferrer"
           >
-            BloomUI.com
+            IE NITK
           </Link>
         </Typography>
       </Box>
