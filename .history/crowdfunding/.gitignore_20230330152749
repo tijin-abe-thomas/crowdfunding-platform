@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 node_modules
+.env
 coverage
 coverage.json
 typechain
@@ -32,6 +33,7 @@ typechain-types
 cache
 
 node_modules
+.env
 coverage
 coverage.json
 typechain
