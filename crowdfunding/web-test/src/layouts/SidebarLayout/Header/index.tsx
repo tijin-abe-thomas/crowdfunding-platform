@@ -7,16 +7,10 @@ import {
   lighten,
   Divider,
   IconButton,
-  Button,
   Tooltip,
   styled,
   useTheme
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-import { useRouter } from 'next/router';
-import NextLink from 'next/link';
-import { ethers } from 'ethers';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import { SidebarContext } from 'src/contexts/SidebarContext';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
@@ -45,18 +39,6 @@ const HeaderWrapper = styled(Box)(
 );
 
 function Header() {
-  const router = useRouter();
-  const currentRoute = router.pathname;
-  const [account, setAccount] = useState(null);
-  // const navigate = useNavigate();
-  const connectHandler = async () => {
-    const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts'
-    });
-    const account = ethers.utils.getAddress(accounts[0]);
-    setAccount(account);
-  };
-
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const theme = useTheme();
 
@@ -90,49 +72,7 @@ function Header() {
       </Stack>
       <Box display="flex" alignItems="center">
         <HeaderButtons />
-        {/* {account ? (
-          // navigate('create-campaign')
-          <NextLink href="/createCampaign" passHref>
-            <Button
-              className={currentRoute === '/createCampaign' ? 'active' : ''}
-              disableRipple
-              component="a"
-            >
-              Create Campaign
-            </Button>
-          </NextLink>
-        ) : (
-          <button
-            type="button"
-            className="nav__connect"
-            onClick={connectHandler}
-          >
-            Connect
-          </button>
-        )} */}
-
-        {account ? (
-          <NextLink href="/dashboards/crypto/createCampaign" passHref>
-          <Button
-            className={currentRoute === '/createCampaign' ? 'active' : ''}
-            disableRipple
-            component="a"
-          >
-            Create Campaign
-          </Button>
-        </NextLink>
-        ) : (
-          <button
-            type="button"
-            className="nav__connect"
-            onClick={connectHandler}
-          >
-            Connect
-          </button>
-        )}
-
         <HeaderUserbox />
-
         <Box
           component="span"
           sx={{

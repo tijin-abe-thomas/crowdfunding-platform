@@ -2,113 +2,144 @@ import { Card } from '@mui/material';
 import { CryptoOrder } from '@/models/crypto_order';
 import RecentOrdersTable from './RecentOrdersTable';
 import { subDays } from 'date-fns';
-import React, { useEffect, useState } from 'react';
-import Crowdfunding from '../../../../artifacts/contracts/Crowdfunding.sol/Crowdfunding.json';
-import { ethers } from 'ethers';
-
-const smartContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
-const contractAbi = Crowdfunding.abi;
 
 function RecentOrders() {
-  const [cryptoOrders, setCryptoOrders] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [account, setAccount] = useState(null);
-  const [balance, setBalance] = useState(null);
-  const [crowdfunding, setCrowdfunding] = useState(null);
-  const [campaigns, setCampaigns] = useState(null);
-  const [transactions, setTransations] = useState(null);
-  const [deadline, setDeadline] = useState(null);
-  const [isClosed, setIsClosed] = useState(null);
-  const [status, setStatus] = useState(null);
-  // const cryptoOrders: CryptoOrder[] = []
-
-  // const temp: CryptoOrder[] = [
-  //   {
-  //     id: '10',
-  //     status: 'completed',
-  //     title: '',
-  //     description: '',
-  //     sourceName: '',
-  //     sourceDesc: '',
-  //     amountCrypto: 0
-  //   }
-  // ];
-  
-
-  const loadBlockchainData = async () => {
-    const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts'
-    });
-    const account = ethers.utils.getAddress(accounts[0]);
-    setAccount(account);
-    console.log(account);
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(provider);
-
-    const ethbalance = await provider.getBalance(account);
-    setBalance(ethers.utils.formatEther(ethbalance).toString());
-
-    const network = await provider.getNetwork();
-
-    const crowdfunding = new ethers.Contract(
-      smartContractAddress,
-      contractAbi,
-      provider
-    );
-    setCrowdfunding(crowdfunding);
-
-    const campaigns = [];
-    for (var i = 0; i < 6; i++) {
-      const campaign = await crowdfunding.campaigns(i + 1);
-      campaigns.push(campaign);
+  const cryptoOrders: CryptoOrder[] = [
+    {
+      id: '1',
+      orderDetails: 'Fiat Deposit',
+      orderDate: new Date().getTime(),
+      status: 'completed',
+      orderID: 'VUVX709ET7BY',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 34.4565,
+      amount: 56787,
+      cryptoCurrency: 'ETH',
+      currency: '$'
+    },
+    {
+      id: '2',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 1).getTime(),
+      status: 'completed',
+      orderID: '23M3UOG65G8K',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 6.58454334,
+      amount: 8734587,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '3',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 5).getTime(),
+      status: 'failed',
+      orderID: 'F6JHK65MS818',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 6.58454334,
+      amount: 8734587,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '4',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 55).getTime(),
+      status: 'completed',
+      orderID: 'QJFAI7N84LGM',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 6.58454334,
+      amount: 8734587,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '5',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 56).getTime(),
+      status: 'pending',
+      orderID: 'BO5KFSYGC0YW',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 6.58454334,
+      amount: 8734587,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '6',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 33).getTime(),
+      status: 'completed',
+      orderID: '6RS606CBMKVQ',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 6.58454334,
+      amount: 8734587,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '7',
+      orderDetails: 'Fiat Deposit',
+      orderDate: new Date().getTime(),
+      status: 'pending',
+      orderID: '479KUYHOBMJS',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 1212',
+      amountCrypto: 2.346546,
+      amount: 234234,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '8',
+      orderDetails: 'Paypal Withdraw',
+      orderDate: subDays(new Date(), 22).getTime(),
+      status: 'completed',
+      orderID: 'W67CFZNT71KR',
+      sourceName: 'Paypal Account',
+      sourceDesc: '*** 1111',
+      amountCrypto: 3.345456,
+      amount: 34544,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '9',
+      orderDetails: 'Fiat Deposit',
+      orderDate: subDays(new Date(), 11).getTime(),
+      status: 'completed',
+      orderID: '63GJ5DJFKS4H',
+      sourceName: 'Bank Account',
+      sourceDesc: '*** 2222',
+      amountCrypto: 1.4389567945,
+      amount: 123843,
+      cryptoCurrency: 'BTC',
+      currency: '$'
+    },
+    {
+      id: '10',
+      orderDetails: 'Wallet Transfer',
+      orderDate: subDays(new Date(), 123).getTime(),
+      status: 'failed',
+      orderID: '17KRZHY8T05M',
+      sourceName: 'Wallet Transfer',
+      sourceDesc: "John's Cardano Wallet",
+      amountCrypto: 765.5695,
+      amount: 7567,
+      cryptoCurrency: 'ADA',
+      currency: '$'
     }
-    setCampaigns(campaigns);
-
-    const cryptoOrders = [];
-    const transactions = [];
-    for (var i = 0; i < 6; i++) {
-      const transaction = await crowdfunding.contributorContributions(
-        account,
-        i
-      );
-      const deadline = parseInt(campaigns[i].campaignDeadline.toString());
-      setDeadline(deadline);
-      deadline < Date.now() ? setIsClosed(true) : setIsClosed(false);
-      isClosed && campaigns[i].pledgedAmt < campaigns[i].goal
-        ? setStatus('failed')
-        : setStatus('completed');
-      isClosed == false
-        ? setStatus('pending')
-        : campaigns[i].pledgedAmt < campaigns[i].goal
-        ? setStatus('failed')
-        : setStatus('completed');
-        console.log(status)
-      const cryptoOrder = {
-        id: i.toString(),
-        status: status,
-        title: campaigns[i].title,
-        description: campaigns[i].description,
-        sourceName: account,
-        sourceDesc: balance,
-        amountCrypto: transaction.toString()
-      };
-      console.log(cryptoOrder);
-      cryptoOrders.push(cryptoOrder);
-    }
-
-    setTransations(transactions);
-    setCryptoOrders(cryptoOrders);
-  };
-
-  useEffect(() => {
-    loadBlockchainData();
-    console.log("hi")
-  }, []);
+  ];
 
   return (
     <Card>
-      {cryptoOrders && (<RecentOrdersTable cryptoOrders={cryptoOrders} account = {account} balance = {balance}/>)}
+      <RecentOrdersTable cryptoOrders={cryptoOrders} />
     </Card>
   );
 }
