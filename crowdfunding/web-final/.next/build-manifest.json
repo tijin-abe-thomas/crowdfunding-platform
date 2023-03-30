@@ -26,11 +26,27 @@
       "static/chunks/pages/_error.js"
     ],
     "/dashboards/crypto": [
+<<<<<<< Updated upstream
+=======
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboards/crypto.js"
+    ],
+    "/management/profile": [
+>>>>>>> Stashed changes
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboards/crypto.js"
     ],
     "/management/transactions": [
+<<<<<<< Updated upstream
+=======
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/management/transactions.js"
+    ],
+    "/user/login": [
+>>>>>>> Stashed changes
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/management/transactions.js"
