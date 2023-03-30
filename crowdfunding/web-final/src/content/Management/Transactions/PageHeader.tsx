@@ -1,10 +1,10 @@
 import { Typography, Button, Grid } from '@mui/material';
-
+import NextLink from 'next/link';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 
 function PageHeader() {
   const user = {
-    name: 'Catherine Pike',
+    name: 'user 1',
     avatar: '/static/images/avatars/1.jpg'
   };
   return (
@@ -14,17 +14,18 @@ function PageHeader() {
           Transactions
         </Typography>
         <Typography variant="subtitle2">
-          {user.name}, these are your recent transactions
+          Hello {user.name}, these are your recent transactions
         </Typography>
       </Grid>
       <Grid item>
+      <NextLink href="/dashboards/crypto" passHref>
         <Button
           sx={{ mt: { xs: 2, md: 0 } }}
           variant="contained"
-          startIcon={<AddTwoToneIcon fontSize="small" />}
         >
-          Create transaction
+          Contribute now!
         </Button>
+        </NextLink>
       </Grid>
     </Grid>
   );

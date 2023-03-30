@@ -1,0 +1,64 @@
+{
+  "campaigns": [
+    {
+      "id": 1,
+      "title": "AAAAAAA",
+      "description": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+      "location": "kolkata",
+      "category": "women rights",
+      "minContribution": 50,
+      "goal": 200,
+      "campaignDeadline": 34560000000
+    },
+    {
+      "id": 2,
+      "title": "second help",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
+      "location": "bangalore",
+      "category": "child rights",
+      "minContribution": 40,
+      "goal": 120,  
+      "campaignDeadline": 14560000000
+    },
+    {
+      "id": 3,
+      "title": "third help",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
+      "location": "kerala",
+      "category": "labour rights",
+      "minContribution": 30,
+      "goal": 150,
+      "campaignDeadline": 1200000
+    },
+    {
+      "id": 4,
+      "title": "fourth help",
+      "description": "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "location": "kolkata",
+      "category": "women rights",
+      "minContribution": 50,
+      "goal": 200,
+      "campaignDeadline": 35960
+    },
+    {
+      "id": 5,
+      "title": "fifth help",
+      "description": "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "location": "bangalore",
+      "category": "child rights",
+      "minContribution": 40,
+      "goal": 120,
+      "campaignDeadline": 500000
+    },
+    {
+      "id": 6,
+      "title": "sixth help",
+      "description": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+      "location": "kerala",
+      "category": "labour rights",
+      "minContribution": 30,
+      "goal": 150,
+      "campaignDeadline": 3489000
+    }
+  ]
+}

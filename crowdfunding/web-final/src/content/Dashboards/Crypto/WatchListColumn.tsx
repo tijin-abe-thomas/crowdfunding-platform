@@ -8,38 +8,39 @@ import {
   useTheme,
   styled
 } from '@mui/material';
+// import Cards from './Cards'
 import Label from 'src/components/Label';
 import Text from 'src/components/Text';
 import { Chart } from 'src/components/Chart';
 import type { ApexOptions } from 'apexcharts';
 
-const AvatarWrapper = styled(Avatar)(
-  ({ theme }) => `
-    margin: ${theme.spacing(0, 0, 1, -0.5)};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: ${theme.spacing(1)};
-    padding: ${theme.spacing(0.5)};
-    border-radius: 60px;
-    height: ${theme.spacing(5.5)};
-    width: ${theme.spacing(5.5)};
-    background: ${
-      theme.palette.mode === 'dark'
-        ? theme.colors.alpha.trueWhite[30]
-        : alpha(theme.colors.alpha.black[100], 0.07)
-    };
+// const AvatarWrapper = styled(Avatar)(
+//   ({ theme }) => `
+//     margin: ${theme.spacing(0, 0, 1, -0.5)};
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-right: ${theme.spacing(1)};
+//     padding: ${theme.spacing(0.5)};
+//     border-radius: 60px;
+//     height: ${theme.spacing(5.5)};
+//     width: ${theme.spacing(5.5)};
+//     background: ${
+//       theme.palette.mode === 'dark'
+//         ? theme.colors.alpha.trueWhite[30]
+//         : alpha(theme.colors.alpha.black[100], 0.07)
+//     };
   
-    img {
-      background: ${theme.colors.alpha.trueWhite[100]};
-      padding: ${theme.spacing(0.5)};
-      display: block;
-      border-radius: inherit;
-      height: ${theme.spacing(4.5)};
-      width: ${theme.spacing(4.5)};
-    }
-`
-);
+//     img {
+//       background: ${theme.colors.alpha.trueWhite[100]};
+//       padding: ${theme.spacing(0.5)};
+//       display: block;
+//       border-radius: inherit;
+//       height: ${theme.spacing(4.5)};
+//       width: ${theme.spacing(4.5)};
+//     }
+// `
+// );
 
 function WatchListColumn() {
   const theme = useTheme();
@@ -162,12 +163,12 @@ function WatchListColumn() {
             }}
           >
             <Box display="flex" alignItems="center">
-              <AvatarWrapper>
-                <img
+              {/* <AvatarWrapper> */}
+                {/* <img
                   alt="BTC"
                   src="/static/images/placeholders/logo/bitcoin.png"
                 />
-              </AvatarWrapper>
+              </AvatarWrapper> */}
               <Box>
                 <Typography variant="h4" noWrap>
                   Bitcoin
@@ -237,12 +238,12 @@ function WatchListColumn() {
             }}
           >
             <Box display="flex" alignItems="center">
-              <AvatarWrapper>
+              {/* <AvatarWrapper>
                 <img
                   alt="ETH"
                   src="/static/images/placeholders/logo/ethereum.png"
                 />
-              </AvatarWrapper>
+              </AvatarWrapper> */}
               <Box>
                 <Typography variant="h4" noWrap>
                   Ethereum
@@ -312,12 +313,12 @@ function WatchListColumn() {
             }}
           >
             <Box display="flex" alignItems="center">
-              <AvatarWrapper>
+              {/* <AvatarWrapper>
                 <img
                   alt="ADA"
                   src="/static/images/placeholders/logo/cardano.png"
                 />
-              </AvatarWrapper>
+              </AvatarWrapper> */}
               <Box>
                 <Typography variant="h4" noWrap>
                   Cardano
