@@ -21,7 +21,7 @@ const EmptyResultsWrapper = styled('img')(
 `
 );
 
-function WatchList(props) {
+function WatchList() {
   const [tabs, setTab] = useState<string | null>('watch_list_columns');
 
   const handleViewOrientation = (
@@ -41,7 +41,7 @@ function WatchList(props) {
           pb: 3
         }}
       >
-        <Typography variant="h3">Campaigns</Typography>
+        <Typography variant="h3">Watch List</Typography>
         <ToggleButtonGroup
           value={tabs}
           exclusive

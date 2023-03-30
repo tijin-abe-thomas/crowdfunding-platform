@@ -1,6 +1,12 @@
 {
   "name": "tokyo-free-white-nextjs-admin-dashboard",
   "version": "1.0.0",
+  "title": "Tokyo Free White NextJS Typescript Admin Dashboard",
+  "description": "High performance React template built with lots of powerful MUI (Material-UI) components across multiple product niches for fast & perfect apps development processes",
+  "author": {
+    "name": "BloomUI.com",
+    "url": "https://bloomui.com"
+  },
   "private": false,
   "dependencies": {
     "@emotion/cache": "11.7.1",
@@ -49,17 +55,10 @@
     "react-custom-scrollbars-2": "4.4.0",
     "react-dom": "17.0.2",
     "truffle-contract": "^4.0.31",
-    "typescript": ">=4.5.0",
+    "typescript": "4.7.3",
     "wagmi": "^0.11.7",
     "web3": "^1.8.2",
-    "web3modal": "^1.9.12",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/user-event": "^14.4.3",
-    "@thirdweb-dev/contracts": "^3",
-    "@thirdweb-dev/react": "^3.10.3",
-    "@types/react-router-dom": "^5.3.3",
-    "bignumber.js": "^9.1.1",
-    "dotenv": "^16.0.3"
+    "web3modal": "^1.9.12"
   },
   "scripts": {
     "dev": "next",
@@ -68,26 +67,15 @@
     "export": "next export",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --config ./.prettierrc",
-    "release": "npx thirdweb@latest release",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --config ./.prettierrc"
   },
   "devDependencies": {
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
+    "hardhat": "^2.12.7",
     "next-transpile-modules": "9.0.0",
-    "prettier": "2.6.2",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
-    "@nomiclabs/hardhat-waffle": "^2.0.5",
-    "chai": "^4.3.7",
-    "css-loader": "^6.7.3",
-    "ethereum-waffle": "^4.0.10",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.13.0",
-    "hardhat-deploy": "^0.11.25"
+    "prettier": "2.6.2"
   }
 }

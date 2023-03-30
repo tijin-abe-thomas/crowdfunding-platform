@@ -43,17 +43,7 @@
     "react-dom": "17.0.2",
     "truffle": "^5.1.65",
     "typescript": "4.7.3",
-    "wagmi": "^0.12.6",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/user-event": "^14.4.3",
-    "@thirdweb-dev/contracts": "^3",
-    "@thirdweb-dev/react": "^3.10.3",
-    "@types/react-router-dom": "^5.3.3",
-    "@web3modal/ethereum": "^2.1.1",
-    "@web3modal/react": "^2.1.1",   
-    "bignumber.js": "^9.1.1",    
-    "dotenv": "^16.0.3",
-    "web3": "^1.9.0"
+    "wagmi": "^0.12.6"
   },
   "scripts": {
     "dev": "next",
@@ -70,15 +60,6 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "next-transpile-modules": "9.0.0",
-    "prettier": "2.6.2",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
-    "@nomiclabs/hardhat-waffle": "^2.0.5",
-    "chai": "^4.3.7",
-    "css-loader": "^6.7.3",    
-    "ethereum-waffle": "^4.0.10",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.13.0",
-    "hardhat-deploy": "^0.11.25"
+    "prettier": "2.6.2"
   }
 }

@@ -89,10 +89,10 @@ const ProfileCover = ({ user }) => {
         </Tooltip>
         <Box>
           <Typography variant="h3" component="h3" gutterBottom>
-            Profile for {user.name}
+            Welcome {user.name}!
           </Typography>
           <Typography variant="subtitle2">
-            This is a profile page. Easy to modify, always blazing fast
+            This is the dashboard for {user.name} for IE Decentralized Crowdfunding Application.
           </Typography>
         </Box>
       </Box>
