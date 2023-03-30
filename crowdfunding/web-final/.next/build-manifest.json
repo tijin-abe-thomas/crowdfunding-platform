@@ -15,11 +15,6 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
-    "/404": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/404.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -30,15 +25,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/management/profile": [
+    "/dashboards/crypto": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/management/profile.js"
+      "static/chunks/pages/dashboards/crypto.js"
     ],
-    "/user/login": [
+    "/dashboards/crypto/createCampaign": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/user/login.js"
+      "static/chunks/pages/dashboards/crypto/createCampaign.js"
+    ],
+    "/management/transactions": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/management/transactions.js"
     ]
   },
   "ampFirstPages": []

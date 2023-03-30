@@ -12,17 +12,9 @@ import MyCards from '@/content/Management/Users/details/MyCards';
 import Addresses from '@/content/Management/Users/details/Addresses';
 
 function ManagementUserProfile() {
-
-  const queryString = window.location.search;
-  const urlSearchParams = new URLSearchParams(queryString);
-  const encodedVariable = urlSearchParams.get('userRef');
-  const myVariable = decodeURIComponent(encodedVariable);
-  console.log(myVariable);
-
-
   const user = {
     savedCards: 7,
-    name: myVariable,
+    name: 'Catherine Pike',
     coverImg: '/static/images/placeholders/covers/5.jpg',
     avatar: '/static/images/avatars/4.jpg',
     description:

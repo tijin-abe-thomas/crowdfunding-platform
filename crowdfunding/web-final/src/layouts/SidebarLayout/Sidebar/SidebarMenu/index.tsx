@@ -184,7 +184,7 @@ function SidebarMenu() {
     <>
       <MenuWrapper>
         <List component="div">
-          <SubMenuWrapper>
+          {/* <SubMenuWrapper>
             <List component="div">
               <ListItem component="div">
                 <NextLink href="/" passHref>
@@ -200,7 +200,7 @@ function SidebarMenu() {
                 </NextLink>
               </ListItem>
             </List>
-          </SubMenuWrapper>
+          </SubMenuWrapper> */}
         </List>
         <List
           component="div"
@@ -223,7 +223,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    Cryptocurrency
+                    Campaigns
                   </Button>
                 </NextLink>
               </ListItem>
@@ -238,7 +238,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<MmsTwoToneIcon />}
                   >
-                    Messenger
+                    Messaging
                   </Button>
                 </NextLink>
               </ListItem>
@@ -249,7 +249,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Management
+              Asset Management
             </ListSubheader>
           }
         >
@@ -279,7 +279,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Accounts
+              Account Management
             </ListSubheader>
           }
         >
@@ -320,7 +320,7 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List>
-        <List
+        {/* <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
@@ -467,7 +467,7 @@ function SidebarMenu() {
               </ListItem>
             </List>
           </SubMenuWrapper>
-        </List>
+        </List> */}
         <List
           component="div"
           subheader={
@@ -478,7 +478,7 @@ function SidebarMenu() {
         >
           <SubMenuWrapper>
             <List component="div">
-              <ListItem component="div">
+              {/* <ListItem component="div">
                 <NextLink href="/status/404" passHref>
                   <Button
                     className={currentRoute === '/status/404' ? 'active' : ''}
@@ -490,8 +490,8 @@ function SidebarMenu() {
                     Error 404
                   </Button>
                 </NextLink>
-              </ListItem>
-              <ListItem component="div">
+              </ListItem> */}
+              {/* <ListItem component="div">
                 <NextLink href="/status/500" passHref>
                   <Button
                     className={currentRoute === '/status/500' ? 'active' : ''}
@@ -503,7 +503,7 @@ function SidebarMenu() {
                     Error 500
                   </Button>
                 </NextLink>
-              </ListItem>
+              </ListItem> */}
               <ListItem component="div">
                 <NextLink href="/status/coming-soon" passHref>
                   <Button

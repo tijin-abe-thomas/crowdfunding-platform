@@ -14,7 +14,9 @@ import {
   List,
   ListItemAvatar
 } from '@mui/material';
+
 import TrendingUp from '@mui/icons-material/TrendingUp';
+import AccountSecurity from '@/content/Dashboards/Crypto/AccountSecurity';
 import Text from 'src/components/Text';
 import { Chart } from 'src/components/Chart';
 import type { ApexOptions } from 'apexcharts';
@@ -55,7 +57,7 @@ const ListItemAvatarWrapper = styled(ListItemAvatar)(
 `
 );
 
-function AccountBalance() {
+function AccountBalance({balance}) {
   const theme = useTheme();
 
   const chartOptions: ApexOptions = {
@@ -142,7 +144,7 @@ function AccountBalance() {
             </Typography>
             <Box>
               <Typography variant="h1" gutterBottom>
-                $54,584.23
+                {balance}
               </Typography>
               <Typography
                 variant="h4"
@@ -207,123 +209,8 @@ function AccountBalance() {
             <Divider absolute orientation="vertical" />
           </Box>
           <Box py={4} pr={4} flex={1}>
-            <Grid container spacing={0}>
-              <Grid
-                xs={12}
-                sm={5}
-                item
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Chart
-                  height={250}
-                  options={chartOptions}
-                  series={chartSeries}
-                  type="donut"
-                />
-              </Grid>
-              <Grid xs={12} sm={7} item display="flex" alignItems="center">
-                <List
-                  disablePadding
-                  sx={{
-                    width: '100%'
-                  }}
-                >
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="BTC"
-                        src="/static/images/placeholders/logo/bitcoin.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="BTC"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Bitcoin"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        20%
-                      </Typography>
-                      <Text color="success">+2.54%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="XRP"
-                        src="/static/images/placeholders/logo/ripple.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="XRP"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ripple"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        10%
-                      </Typography>
-                      <Text color="error">-1.22%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ADA"
-                        src="/static/images/placeholders/logo/cardano.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ADA"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Cardano"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        40%
-                      </Typography>
-                      <Text color="success">+10.50%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ETH"
-                        src="/static/images/placeholders/logo/ethereum.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ETH"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ethereum"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        30%
-                      </Typography>
-                      <Text color="error">-12.38%</Text>
-                    </Box>
-                  </ListItem>
-                </List>
-              </Grid>
+            <Grid>
+              <AccountSecurity />
             </Grid>
           </Box>
         </Grid>

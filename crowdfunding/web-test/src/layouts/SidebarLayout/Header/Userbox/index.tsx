@@ -16,18 +16,6 @@ import {
   Typography
 } from '@mui/material';
 
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from 'wagmi'
-
-import { useRouter } from 'next/router';
-
-import { useEffect } from 'react';
-
 import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
@@ -70,55 +58,9 @@ const UserBoxDescription = styled(Typography)(
 `
 );
 
-
-import {
-  EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
-} from "@web3modal/ethereum";
-
-import { Web3Modal } from "@web3modal/react";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { arbitrum, mainnet, polygon, localhost } from "wagmi/chains";
-
-const chains = [arbitrum, mainnet, polygon, localhost];
-
-// Wagmi client
-const { provider } = configureChains(chains, [
-  walletConnectProvider({ projectId: "f0aaa836ea9062cd065f2d98738c714e" }),
-]);
-
-const wagmiClient = createClient({
-  connectors: modalConnectors({
-    projectId: "f0aaa836ea9062cd065f2d98738c714e",
-    version: "2", // or "2"
-    appName: "web3Modal",
-    chains,
-  }),
-  provider,
-});
-
-const ethereumClient = new EthereumClient(wagmiClient, chains);
-
 function HeaderUserbox() {
-
-  const { address, isConnected } = useAccount()
-  console.log(address);
-  console.log(isConnected);
-
-
-  const [sendLogOutRequest, setSendLogOutRequest] = useState(false);
-
-  const   router = useRouter();
-
-    useEffect(() => {
-      if(sendLogOutRequest){
-        useDisconnect;
-        router.push('/');
-    }}, [sendLogOutRequest]);
-
   const user = {
-    name: address,
+    name: 'Catherine Pike',
     avatar: '/static/images/avatars/1.jpg',
     jobtitle: 'Project Manager'
   };
@@ -133,7 +75,6 @@ function HeaderUserbox() {
   const handleClose = (): void => {
     setOpen(false);
   };
-
 
   return (
     <>
@@ -164,12 +105,6 @@ function HeaderUserbox() {
           horizontal: 'right'
         }}
       >
-
-        <WagmiConfig client={wagmiClient}>
-        </WagmiConfig>
-        <Web3Modal
-          projectId="f0aaa836ea9062cd065f2d98738c714e"
-          ethereumClient={ethereumClient}/>
         <MenuUserBox sx={{ minWidth: 210 }} display="flex">
           <Avatar variant="rounded" alt={user.name} src={user.avatar} />
           <UserBoxText>
@@ -202,7 +137,7 @@ function HeaderUserbox() {
         </List>
         <Divider />
         <Box sx={{ m: 1 }}>
-          <Button color="primary" fullWidth onClick={() => setSendLogOutRequest(true)}>
+          <Button color="primary" fullWidth>
             <LockOpenTwoToneIcon sx={{ mr: 1 }} />
             Sign out
           </Button>
