@@ -18,6 +18,9 @@ function EditProfileTab() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Card>
+            <Button variant="text" startIcon={<EditTwoToneIcon /> }>
+              Edit
+            </Button>
           <Box
             p={3}
             display="flex"
@@ -32,9 +35,6 @@ function EditProfileTab() {
                 Manage informations related to your personal details
               </Typography>
             </Box>
-            <Button variant="text" startIcon={<EditTwoToneIcon />}>
-              Edit
-            </Button>
           </Box>
           <Divider />
           <CardContent sx={{ p: 4 }}>
