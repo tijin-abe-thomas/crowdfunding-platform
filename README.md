@@ -33,6 +33,7 @@ now run the server with
 
 you will be able to see the website on your localhost:3000
 
+## ELSE
 ## Making a local TestNet using Hardhat
 
 In case you have a globally installed version of yarn,
