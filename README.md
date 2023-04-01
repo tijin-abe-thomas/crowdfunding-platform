@@ -11,7 +11,8 @@ Navigate to the folder:
 ```cd crowdfunding```
 ```cd web-final```
 
-FOR WINDOWS: 
+##FOR WINDOWS: 
+
 install the required dependencies with 
 
 ```npm --save-dev install --legacy-peer-deps```
