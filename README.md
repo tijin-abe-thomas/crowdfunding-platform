@@ -9,6 +9,28 @@ Clone the repository to the local machine by running the following command in th
 Navigate to the folder:
 
 ```cd crowdfunding```
+```cd web-final```
+
+FOR WINDOWS: 
+install the required dependencies with 
+
+```npm --save-dev install --legacy-peer-deps```
+
+run a hardhat local testnet 
+
+```npx hardhat node```
+
+in a different cmd window, deploy the smart contracts
+
+```npx run scripts/deploy.js --network localhost```
+
+!! at this point, change the smart contract addresses in the project to whatever is displayed on the terminal !!
+
+now run the server with 
+
+```npm run dev```
+
+you will be able to see the website on your localhost:3000
 
 ## Making a local TestNet using Hardhat
 
