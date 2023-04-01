@@ -29,16 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboards/crypto.js"
-    ],
-    "/dashboards/crypto/createCampaign": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboards/crypto/createCampaign.js"
-    ],
-    "/management/transactions": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/management/transactions.js"
     ]
   },
   "ampFirstPages": []

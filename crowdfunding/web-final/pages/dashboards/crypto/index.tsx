@@ -20,7 +20,7 @@ import TextField from '@mui/material/TextField';
 import Web3 from 'web3';
 import { BlockHeader, Block } from 'web3-eth'; // ex. package types
 
-const smartContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const smartContractAddress = '0x7af2a8EA9a52Dddc5632E00192050bFd636F6974';
 function DashboardCrypto() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);

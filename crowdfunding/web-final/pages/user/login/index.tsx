@@ -34,7 +34,7 @@ import User from "../../../build/contracts/User.json";
 import { redirect } from 'next/dist/server/api-utils';
 
 const web3 = new Web3("http://localhost:7545"); // initialize web3 with your Ethereum provider URL
-const contractAddress = "0xea0c3088cbcE8df61801E3F1DdC1Ae9f9Ed7348E"; // replace with the actual address of your deployed smart contract
+const contractAddress = "0x33Cea73a47d1c5572A063987d81b6B455F91677A"; // replace with the actual address of your deployed smart contract
 const contractAbi = User.abi; // import the ABI of your smart contract
 
 const profileContract = new web3.eth.Contract(contractAbi, contractAddress); 
