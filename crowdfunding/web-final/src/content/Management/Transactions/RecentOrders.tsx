@@ -47,7 +47,7 @@ function RecentOrders() {
     //   ? setStatus("failed")
     //   : setStatus("completed");
     console.log("isclosed before status", isClosed)
-    if(isClosed==false){
+    if(isClosed==="false"){
       setStatus("pending")
     }  
     else
