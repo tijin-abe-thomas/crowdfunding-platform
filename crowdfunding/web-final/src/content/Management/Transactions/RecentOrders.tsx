@@ -46,8 +46,8 @@ function RecentOrders() {
     //   : campaign.pledgedAmt < campaign.goal
     //   ? setStatus("failed")
     //   : setStatus("completed");
-
-    if(!isClosed){
+    console.log("isclosed before status", isClosed)
+    if(isClosed==false){
       setStatus("pending")
     }  
     else
@@ -57,6 +57,7 @@ function RecentOrders() {
       else
       setStatus("completed")
     }
+    console.log("status", status)
   };
 
   const loadBlockchainData = async () => {
@@ -109,7 +110,7 @@ function RecentOrders() {
       } else {
         setIsClosed("false");
       }
-      console.log(isClosed);
+      console.log("isclosed",isClosed);
 
       await helperFunc(isClosed, campaigns[i]);
 

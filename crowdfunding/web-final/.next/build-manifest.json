@@ -29,6 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboards/crypto.js"
+    ],
+    "/management/transactions": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/management/transactions.js"
     ]
   },
   "ampFirstPages": []
