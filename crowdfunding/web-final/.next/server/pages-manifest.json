@@ -3,5 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/dashboards/crypto/createCampaign": "pages/dashboards/crypto/createCampaign.js"
+  "/management/profile": "pages/management/profile.js",
+  "/dashboards/crypto": "pages/dashboards/crypto.js"
 }
