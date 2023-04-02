@@ -3,13 +3,14 @@ import { ethers } from "ethers";
 import TextField from "@mui/material/TextField";
 // Components
 // import Rating from './Rating'
+import Rating from "@mui/material/Rating";
 import BigNumber from "bignumber.js";
 import { getValue } from "@mui/system";
 // import Web3 from 'node_modules/web3/dist/web3.min.js';
 import Web3 from "web3";
 
 // import Crowdfunding from "../../../../artifacts/contracts/Crowdfunding.sol/Crowdfunding.json";
-import Crowdfunding from "../../../../build/contracts/Crowdfunding.json"
+import Crowdfunding from "../../../../build/contracts/Crowdfunding.json";
 import config from "config.json";
 
 const web3 = new Web3("http://localhost:7545");
@@ -18,10 +19,7 @@ const tokens = (n) => {
 };
 const contractAddress = Crowdfunding.networks[5777].address;
 const contractAbi = Crowdfunding.abi;
-const contract = new web3.eth.Contract(
-  contractAbi,
-  contractAddress
-);
+const contract = new web3.eth.Contract(contractAbi, contractAddress);
 
 const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
   const [contribution, setContribution] = useState(null);
@@ -32,6 +30,7 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
   const [manager, setManager] = useState(null);
   const [contributors, setContributors] = useState(null);
   const [contributions, setContributions] = useState(null);
+  const [votes, setVotes] = useState(null);
   const myMap = new Map();
 
   const fetchDetails = async () => {
@@ -81,10 +80,10 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
     const deadline = parseInt(item.campaignDeadline.toString());
     setDeadline(deadline);
     console.log(deadline);
-    console.log(Date.now())
+    console.log(Date.now());
 
     deadline > Date.now() ? setIsOpen(true) : setIsOpen(false);
-    console.log("votfsdafkljes", item.voteCount.toString())
+    console.log("votfsdafkljes", item.voteCount.toString());
     // console.log("dead",deadline)
     // console.log(Date.now())
 
@@ -102,6 +101,23 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
     //   campaignContributions[0].args.id_
     // );
     // setContribution(contribution);
+
+    const noOfCampaigns = await contract.methods.noOfCampaigns().call();
+    const total = parseInt(noOfCampaigns.toString());
+    let totalVotes = 0;
+
+    for (var i = 0; i < total; i++) {
+      let x = parseInt(campaigns[i].voteCount.toString());
+      totalVotes += x;
+    }
+
+    const votes = [];
+    for (var i = 0; i < campaigns.length; i++) {
+      votes.push(parseInt(campaigns[i].voteCount.toString()));
+    }
+    setVotes(votes);
+    console.log("fsdhkaf", votes);
+    console.log("total votes", totalVotes);
   };
 
   const daysLeft = (deadline) => {
@@ -175,7 +191,7 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
     var weiValue = web3.utils.toWei(etherAmount, "ether");
     contract.methods
       .payCampaign(parseInt(item.ID.toString()))
-      .send({ from: accounts[0], value: weiValue,  gas: '5000000' });
+      .send({ from: accounts[0], value: weiValue, gas: "5000000" });
 
     // Buy item...
     // let wallet = new ethers.Wallet(
@@ -236,7 +252,7 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
   };
 
   return (
-    <div className="product" >
+    <div className="product">
       <div className="product__details">
         <div className="product__image">
           <img src="/static/images/2.png" alt="Product" />
@@ -264,6 +280,15 @@ const Product = ({ item, provider, account, crowdfunding, togglePop }) => {
           <h2>Overview</h2>
 
           <p>{item.description}</p>
+          <br/>
+          {votes && (
+            <Rating
+              name="read-only"
+              value={item.voteCount.toString()}
+              // precision={0.5}
+              readOnly
+            />
+          )}
         </div>
 
         <div className="product__order">
